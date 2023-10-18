@@ -7,7 +7,18 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout } from "../hooks/useLogout";
+import { NavLink } from "react-router-dom";
+
 export default function NavBar() {
+  const { user } = useAuthContext();
+  const { logout } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -24,7 +35,23 @@ export default function NavBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Transport
           </Typography>
-          <Button color="inherit">Login</Button>
+          <NavLink
+            href="/home"
+            style={{ color: "inherit", fontWeight: "bold" }}
+          >
+            Home
+          </NavLink>
+          {user ? (
+            <>
+              <Button color="inherit" onClick={handleLogout}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <Button href="/signIn" style={{ color: "inherit" }}>
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

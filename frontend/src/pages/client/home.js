@@ -1,16 +1,16 @@
 import React from "react";
-import SignIn from "../../components/client/signIn/signIn";
+import Home from "../../components/client/home/home";
 import NavBar from "../../layout/NavBar";
 
-const SignInPage = () => {
+const HomePage = () => {
   return (
     <main className="app">
       <NavBar />
       <div className="content">
-        <SignIn />
+        <Home />
       </div>
     </main>
   );
 };
 
-export default SignInPage;
+export default HomePage;
