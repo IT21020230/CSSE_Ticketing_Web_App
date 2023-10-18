@@ -15,7 +15,10 @@ function App() {
       <BrowserRouter>
         <div className="pages">
           <Routes>
-            {/* <Route path="/" element={<Navigate to="/signIn" />} /> */}
+            <Route
+              path="/"
+              element={user ? <HomePage /> : <Navigate to="/signIn" />}
+            />
             {/* <Route path="/signIn" element={<SignInPage />} /> */}
             <Route
               path="/signIn"
