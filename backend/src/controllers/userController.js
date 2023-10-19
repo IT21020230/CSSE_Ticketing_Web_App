@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
+const qrCode = require("qrcode");
+
 const User = require("../models/userModel");
 
 // Create JWT token
@@ -119,15 +121,49 @@ const signupUser = async (req, res) => {
     });
     await user.save();
 
-    const token = createToken(user._id);
-
-    res.status(200).json({
+    // Generate a QR code containing user details
+    const userQRCode = JSON.stringify({
       userId: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
-      token: token,
+      nic: user.nic,
+      phone: user.phone,
+      registeredDate: user.registeredDate,
     });
+
+    // Generate the QR code as a data URL
+    qrCode.toDataURL(userQRCode, async (err, url) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Failed to generate QR code" });
+      }
+
+      // Update the user document with the QR code URL and save it again
+      user.accountId = url;
+      await user.save();
+
+      const token = createToken(user._id);
+
+      res.status(200).json({
+        userId: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        token: token,
+        qrCode: user.accountId,
+      });
+    });
+
+    // const token = createToken(user._id);
+
+    // res.status(200).json({
+    //   userId: user._id,
+    //   name: user.name,
+    //   email: user.email,
+    //   role: user.role,
+    //   token: token,
+    // });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
