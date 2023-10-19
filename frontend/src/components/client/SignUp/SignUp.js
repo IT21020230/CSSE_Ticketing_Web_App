@@ -56,25 +56,6 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    // setfName(data.get("firstName"));
-    // setlName(data.get("lastName"));
-    // setEmail(data.get("email"));
-    // setPassword(data.get("password"));
-    // setConfirmPassword(data.get("confirmPassword"));
-    // setNic(data.get("nic"));
-    // setPhone(data.get("phone"));
-
-    // console.log(
-    //   fname,
-    //   lname,
-    //   email,
-    //   password,
-    //   confirmPassword,
-    //   role,
-    //   nic,
-    //   phone
-    // );
-
     await signup({
       fname: data.get("firstName"),
       lname: data.get("lastName"),
@@ -86,30 +67,6 @@ export default function SignUp() {
       phone: data.get("phone"),
     });
   };
-
-  // useEffect(() => {
-  //   // Check that all fields have values
-  //   if (
-  //     fname &&
-  //     lname &&
-  //     email &&
-  //     password &&
-  //     confirmPassword &&
-  //     nic &&
-  //     phone
-  //   ) {
-  //     signup({
-  //       fname,
-  //       lname,
-  //       email,
-  //       password,
-  //       confirmPassword,
-  //       role,
-  //       nic,
-  //       phone,
-  //     });
-  //   }
-  // }, [fname, lname, email, password, confirmPassword, nic, phone]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
