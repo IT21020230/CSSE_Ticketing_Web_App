@@ -34,13 +34,10 @@ const userSchema = new Schema({
     type: String,
     required: false,
   },
-  liscenceNo: {
-    type: String,
-    required: false,
-  },
-  busId: {
-    type: String,
-    required: false,
+  accountBalance: {
+    type: Number,
+    default: 100.0,
+    required: true,
   },
 });
 

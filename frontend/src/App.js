@@ -8,6 +8,8 @@ const SignUpPage = lazy(() => import("./pages/client/signUp"));
 const HomePage = lazy(() => import("./pages/client/home"));
 const UserPage = lazy(() => import("./pages/client/user"));
 
+const PassengerPage = lazy(() => import("./pages/admin/passenger"));
+
 function App() {
   const { user } = useAuthContext();
 
@@ -36,6 +38,10 @@ function App() {
             <Route
               path="/user"
               element={user ? <UserPage /> : <Navigate to="/signIn" />}
+            />
+            <Route
+              path="/passengers"
+              element={user ? <PassengerPage /> : <Navigate to="/signIn" />}
             />
           </Routes>
         </div>

@@ -65,8 +65,7 @@ const signupUser = async (req, res) => {
       phone,
       registeredDate,
       accountId,
-      liscenceNo,
-      busId,
+      accountBalance,
     } = req.body;
 
     // Check name or email, name or password is empty
@@ -116,8 +115,7 @@ const signupUser = async (req, res) => {
       phone,
       registeredDate,
       accountId,
-      liscenceNo,
-      busId,
+      accountBalance,
     });
     await user.save();
 
@@ -130,6 +128,7 @@ const signupUser = async (req, res) => {
       nic: user.nic,
       phone: user.phone,
       registeredDate: user.registeredDate,
+      accountBalance: user.accountBalance,
     });
 
     // Generate the QR code as a data URL
@@ -154,16 +153,6 @@ const signupUser = async (req, res) => {
         qrCode: user.accountId,
       });
     });
-
-    // const token = createToken(user._id);
-
-    // res.status(200).json({
-    //   userId: user._id,
-    //   name: user.name,
-    //   email: user.email,
-    //   role: user.role,
-    //   token: token,
-    // });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });

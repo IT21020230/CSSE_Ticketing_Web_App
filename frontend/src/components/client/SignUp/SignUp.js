@@ -38,15 +38,7 @@ const defaultTheme = createTheme();
 
 export default function SignUp() {
   const { signup, error, isLoading } = useSignup();
-
-  const [fname, setfName] = useState("");
-  const [lname, setlName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("");
-  const [nic, setNic] = useState("");
-  const [phone, setPhone] = useState("");
 
   const handleChangeRole = (event) => {
     setRole(event.target.value);
