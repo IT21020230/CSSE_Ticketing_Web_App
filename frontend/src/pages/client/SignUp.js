@@ -1,5 +1,5 @@
 import React from "react";
-import SignUp from "../../components/client/signUp/signUp";
+import SignUp from "../../components/client/SignUp/SignUp";
 import NavBar from "../../layout/NavBar";
 
 const SignUnPage = () => {

@@ -20,9 +20,14 @@ app.use(cors());
 
 //Import Routes
 const userRoutes = require("./src/routes/userRoutes");
+const busRouteRoutes = require("./src/routes/busRouteRoutes")
+const payment = require("./src/routes/paymentRoutes")
 
 //Use routes
 app.use("/api/users", userRoutes);
+app.use("/api/routes", busRouteRoutes);
+app.use("/api/payment", payment);
+
 
 //Connect to MongoDB
 mongoose

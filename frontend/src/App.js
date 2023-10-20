@@ -4,11 +4,15 @@ import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 const SignInPage = lazy(() => import("./pages/client/signIn"));
-const SignUpPage = lazy(() => import("./pages/client/signUp"));
+const SignUpPage = lazy(() => import("./pages/client/SignUp"));
 const HomePage = lazy(() => import("./pages/client/home"));
 const UserPage = lazy(() => import("./pages/client/user"));
 
 const PassengerPage = lazy(() => import("./pages/admin/passenger"));
+
+const BalanceUpdatePage = lazy(() => import("./pages/client/balanceUpdate"))
+
+
 
 function App() {
   const { user } = useAuthContext();
@@ -43,6 +47,13 @@ function App() {
               path="/passengers"
               element={user ? <PassengerPage /> : <Navigate to="/signIn" />}
             />
+
+            <Route
+              path="/balanceUpdate"
+              element={user ? <BalanceUpdatePage /> : <Navigate to="/signIn" />}
+            />
+
+
           </Routes>
         </div>
       </BrowserRouter>
