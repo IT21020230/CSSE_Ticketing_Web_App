@@ -30,6 +30,7 @@ const payment = async (req, res) => {
 
 const rechargeAccountBalance = async (req, res)=> {
   const { userId, amount } = req.body;
+  console.log(amount)
 
   try{
     const user = await User.findById(userId);
@@ -51,25 +52,24 @@ const rechargeAccountBalance = async (req, res)=> {
 }
 
 const getCurrentBalanceByUserId = async (req, res) => {
+  const { userId } = req.params; // Change req.body to req.params to get userId from the URL
+  
 
-  const { userId } = req.body;
-
-  try{
-
+  try {
     const user = await User.findById(userId);
+    
 
-    if(!user){
-      return res.status(404).json({ message: 'User not found'});
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
 
-    res.status(200).json({ accountBalance: user.accountBalance })
-
-  }catch (error) {
-    console.log(error)
+    res.status(200).json({ accountBalance: user.accountBalance });
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
+};
 
-}
 
 module.exports = {
     payment,

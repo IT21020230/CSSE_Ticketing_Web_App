@@ -15,7 +15,7 @@ router.post("/", payment);
 
 router.put("/updateAccountBalance", rechargeAccountBalance);
 
-router.get("/getCurrentAccountBalance", getCurrentBalanceByUserId)
+router.get("/getCurrentAccountBalance/:userId", getCurrentBalanceByUserId)
 
 
 
