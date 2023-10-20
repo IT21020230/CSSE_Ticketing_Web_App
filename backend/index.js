@@ -20,10 +20,10 @@ app.use(cors());
 
 //Import Routes
 const userRoutes = require("./src/routes/userRoutes");
-
+const routeHistoryRoutes = require("./src/routes/routeHistoryRoutes");
 //Use routes
 app.use("/api/users", userRoutes);
-
+app.use("/api/routeHistory", routeHistoryRoutes);
 //Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI, {
