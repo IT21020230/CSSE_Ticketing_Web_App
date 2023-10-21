@@ -328,6 +328,7 @@ export default function DataTable() {
               >
                 Driver Details
               </h2>
+              {console.log(currentViewObject)}
               <form className="mt-2 mb-2 max-w-screen-lg sm:w-150">
                 <Grid container spacing={2}>
                   <Grid item xs={12}>

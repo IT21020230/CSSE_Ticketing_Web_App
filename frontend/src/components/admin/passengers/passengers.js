@@ -41,9 +41,18 @@ export default function DataTable() {
 
   const [users, setUsers] = useState();
   const [rows, setRows] = useState([]);
+  const [role, setRole] = useState("");
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [nic, setNic] = useState("");
+  const [accountBalance, setAccountBalance] = useState("");
+  const [password, setPassword] = useState("");
 
   const [currentDeleteId, setCurrentDeleteId] = useState("");
   const [currentUpdateId, setCurrentUpdateId] = useState("");
+
+  const [currentUpdateObject, setCurrentUpdateObject] = useState();
 
   const columns = [
     { field: "name", headerName: "Name", width: 200 },
@@ -78,11 +87,11 @@ export default function DataTable() {
       width: 50,
       renderCell: (params) => (
         <EditIcon
-          // onClick={() => {
-          //   console.log("Current Update ID:", params.row.id);
-          //   setCurrentUpdateId(params.row.id);
-          //   handleUpdateModalOpen(params.row.id);
-          // }}
+          onClick={() => {
+            console.log("Current Update ID:", params.row.id);
+            setCurrentUpdateId(params.row.id);
+            handleUpdateModalOpen(params.row.id);
+          }}
           style={{ cursor: "pointer" }}
         />
       ),
@@ -104,6 +113,10 @@ export default function DataTable() {
     },
   ];
 
+  const handleChangeRole = (event) => {
+    setRole(event.target.value);
+  };
+
   //Delete modal
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const handleDeleteModalOpen = () => {
@@ -114,8 +127,7 @@ export default function DataTable() {
   };
 
   //Delete Success modal
-  const [openDeleteSuccessModal, setOpenDeleteSuccessModal] =
-    React.useState(false);
+  const [openDeleteSuccessModal, setOpenDeleteSuccessModal] = useState(false);
   const handleDeleteSuccessModalOpen = () => {
     setOpenDeleteSuccessModal(true);
   };
@@ -124,61 +136,68 @@ export default function DataTable() {
   };
 
   //handle Update Confirm Modal Close
-  // const [openUpdateConfirmModal, setOpenUpdateConfirmModal] =
-  //   React.useState(false);
-  // const handleUpdateConfirmModalOpen = () => {
-  //   setOpenUpdateConfirmModal(true);
-  // };
-  // const handleUpdateConfirmModalClose = () => {
-  //   setOpenUpdateConfirmModal(false);
-  // };
+  const [openUpdateConfirmModal, setOpenUpdateConfirmModal] = useState(false);
+  const handleUpdateConfirmModalOpen = () => {
+    setOpenUpdateConfirmModal(true);
+  };
+  const handleUpdateConfirmModalClose = () => {
+    setOpenUpdateConfirmModal(false);
+  };
 
   //Update form modal
-  // const [openUpdateModal, setOpenUpdateModal] = React.useState(false);
-  // const handleUpdateModalOpen = (id) => {
-  //   setCurrentUpdateObject(lessons.filter((item) => item._id === id));
-  //   setOpenUpdateModal(true);
-  // };
-  // const handleUpdateModalClose = () => {
-  //   setOpenUpdateModal(false);
-  // };
+  const [openUpdateModal, setOpenUpdateModal] = useState(false);
+  const handleUpdateModalOpen = (id) => {
+    setCurrentUpdateObject(users.find((user) => user._id === id));
+    setOpenUpdateModal(true);
+  };
+  const handleUpdateModalClose = () => {
+    setOpenUpdateModal(false);
+  };
 
-  //Update Success modal
-  // const [openUpdateSuccessModal, setOpenUpdateSuccessModal] =
-  //   React.useState(false);
-  // const handleUpdateSuccessModalOpen = () => {
-  //   setOpenUpdateSuccessModal(true);
-  // };
-  // const handleUpdateSuccessModalClose = () => {
-  //   setOpenUpdateSuccessModal(false);
-  // };
+  // Update Success modal
+  const [openUpdateSuccessModal, setOpenUpdateSuccessModal] = useState(false);
+  const handleUpdateSuccessModalOpen = () => {
+    setOpenUpdateSuccessModal(true);
+  };
+  const handleUpdateSuccessModalClose = () => {
+    setOpenUpdateSuccessModal(false);
+  };
 
   //Delete a lesson function
   const handleDelete = async () => {
     await Axios.delete(`http://localhost:9000/api/users/${currentDeleteId}`);
     console.log("Deleted ID:", currentDeleteId);
     handleDeleteModalClose();
-    handleDeleteSuccessModalOpen();
     fetchUsers();
+    handleDeleteSuccessModalOpen();
   };
 
   //Update a lesson
-  // const handleUpdate = async () => {
-  //   Axios.patch(`http://localhost:9000/api/users/${currentUpdateId}`, {
-  //     name: data.get("name"),
-  //     email: data.get("email"),
-  //     password: data.get("password"),
-  //     role: data.get("role"),
-  //     nic: data.get("nic"),
-  //     accountBalance: data.get("accountBalance"),
-  //   });
+  const handleUpdateSubmit = async (event) => {
+    event.preventDefault();
 
-  //   if (true) {
-  //     handleUpdateModalClose();
-  //     handleUpdateConfirmModalClose();
-  //     handleUpdateSuccessModalOpen();
-  //   }
-  // };
+    console.log(accountBalance);
+
+    const response = Axios.put(
+      `http://localhost:9000/api/users/${currentUpdateId}`,
+      {
+        name,
+        email,
+        password,
+        role,
+        nic,
+        accountBalance,
+      }
+    );
+
+    if (true) {
+      handleUpdateModalClose();
+      handleUpdateConfirmModalClose();
+      handleUpdateSuccessModalOpen();
+      console.log("Response: ", response);
+      fetchUsers();
+    }
+  };
 
   //Fetch users
   const fetchUsers = async () => {
@@ -236,7 +255,7 @@ export default function DataTable() {
             alignItems: "center",
           }}
         >
-          All Passengers
+          All Users
         </Typography>
         <br />
         {rows ? (
@@ -321,139 +340,138 @@ export default function DataTable() {
         </Modal>
 
         {/* Update modal */}
-        {/* <Modal open={openUpdateModal} onClose={handleUpdateModalClose}>
-          <Typography component="h1" variant="h5">
-            User Details
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleUpdateSubmit}
-            sx={{ mt: 3 }}
-          >
-            <>
-              <img
-                id="qrcode-image"
-                src={users.accountId}
-                alt="QR Code"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              />
+        {currentUpdateObject ? (
+          <Modal open={openUpdateModal} onClose={handleUpdateModalClose}>
+            {/* <ThemeProvider theme={defaultTheme}>
+              <Container component="main" maxWidth="xs">
+                <CssBaseline /> */}
+            <Box sx={{ ...style, width: 400 }}>
+              <h2
+                className="text-3xl font-semibold text-black"
+                id="parent-modal-title"
+              >
+                User Details
+              </h2>
+              {console.log(currentUpdateObject)}
+              <form className="mt-2 mb-2 max-w-screen-lg sm:w-150">
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      defaultValue={currentUpdateObject.name}
+                      fullWidth
+                      id="name"
+                      label="Name"
+                      name="name"
+                      autoComplete="name"
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      defaultValue={currentUpdateObject.email}
+                      fullWidth
+                      id="email"
+                      label="Email"
+                      name="email"
+                      autoComplete="email"
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      defaultValue={""}
+                      fullWidth
+                      id="password"
+                      label="Password"
+                      name="password"
+                      autoComplete="password"
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      defaultValue={currentUpdateObject.role}
+                      //value={users.role}
+                      label="Role"
+                      fullWidth
+                      onChange={handleChangeRole}
+                    >
+                      <MenuItem value={""} disabled>
+                        Select a role
+                      </MenuItem>
+                      <MenuItem value={"Local Passenger"}>
+                        Local Passenger
+                      </MenuItem>
+                      <MenuItem value={"Foreign Passenger"}>
+                        Foreign Passenger
+                      </MenuItem>
+                      <MenuItem value={"Admin"}>Admin</MenuItem>
+                      <MenuItem value={"Driver"}>Driver</MenuItem>
+                    </Select>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      defaultValue={currentUpdateObject.nic}
+                      fullWidth
+                      id="nic"
+                      label="NIC"
+                      name="nic"
+                      autoComplete="nic"
+                      onChange={(e) => {
+                        setNic(e.target.value);
+                      }}
+                    />
+                  </Grid>
 
+                  <Grid item xs={12}>
+                    <TextField
+                      defaultValue={currentUpdateObject.accountBalance}
+                      fullWidth
+                      id="accountBalance"
+                      label="Account Balance"
+                      name="accountBalance"
+                      autoComplete="accountBalance"
+                      onChange={(e) => {
+                        setAccountBalance(e.target.value);
+                      }}
+                    />
+                  </Grid>
+                  {/* <Grid item xs={12}>
+                          <img />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <img />
+                        </Grid> */}
+                </Grid>
+              </form>
               <br />
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    defaultValue={currentUpdateObject[0].name}
-                    required
-                    fullWidth
-                    id="name"
-                    label="Name"
-                    name="name"
-                    autoComplete="name"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    defaultValue={currentUpdateObject[0].email}
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="new-password"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="confirmPassword"
-                    label="Confirm Password"
-                    type="password"
-                    id="confirmPassword"
-                    autoComplete="new-password"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    defaultValue={currentUpdateObject[0].role}
-                    //value={users.role}
-                    label="Role"
-                    fullWidth
-                    onChange={handleChangeRole}
-                  >
-                    <MenuItem value={""} disabled>
-                      Select a role
-                    </MenuItem>
-                    <MenuItem value={"Local Passenger"}>
-                      Local Passenger
-                    </MenuItem>
-                    <MenuItem value={"Foreign Passenger"}>
-                      Foreign Passenger
-                    </MenuItem>
-                  </Select>
-                </Grid>
-
-                <Grid item xs={12}>
-                  <TextField
-                    defaultValue={currentUpdateObject[0].nic}
-                    required
-                    fullWidth
-                    name="nic"
-                    label="NIC"
-                    id="nic"
-                    autoComplete="given-nic"
-                    autoFocus
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <TextField
-                    defaultValue={currentUpdateObject[0].phone}
-                    required
-                    fullWidth
-                    name="phone"
-                    label="Contact Number"
-                    id="phone"
-                    autoComplete="given-phone"
-                    autoFocus
-                  />
-                </Grid>
-
-                <Grid item xs={12}></Grid>
-              </Grid>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={handleUpdateConfirmModalOpen}
               >
                 Update My Details
               </Button>
-            </>
-            <Grid container justifyContent="flex-end"></Grid>
-          </Box>
-        </Modal> */}
+            </Box>
+            {/* </Container>
+            </ThemeProvider> */}
+          </Modal>
+        ) : (
+          <></>
+        )}
 
         {/* Update confirm modal */}
-        {/* <Modal
+        <Modal
           open={openUpdateConfirmModal}
           onClose={handleUpdateConfirmModalClose}
         >
@@ -475,13 +493,38 @@ export default function DataTable() {
               </Button>
               <Button
                 className="mt-3 hover:bg-pink-700 bg-pink-600 w-max h-12 text-white py-1 px-8 rounded-md"
-                onClick={handleUpdate}
+                onClick={handleUpdateSubmit}
               >
                 Update
               </Button>
             </div>
           </Box>
-        </Modal> */}
+        </Modal>
+
+        {/* Update success modal */}
+        <Modal
+          open={openUpdateSuccessModal}
+          onClose={handleUpdateSuccessModalClose}
+        >
+          <Box sx={{ ...style, width: 400 }}>
+            <h2
+              className="text-3xl font-semibold text-black"
+              id="parent-modal-title"
+            >
+              User Updates Successfully
+            </h2>
+            <br />
+
+            <div className="flex justify-between">
+              <Button
+                className="mt-3 hover:bg-blue-800 bg-blue-700 w-max h-12 text-white py-1 px-8 rounded-md"
+                onClick={handleUpdateSuccessModalClose}
+              >
+                Okay
+              </Button>
+            </div>
+          </Box>
+        </Modal>
       </Container>
     </ThemeProvider>
   );
