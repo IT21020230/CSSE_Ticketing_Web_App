@@ -3,8 +3,8 @@ import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
 import { useAuthContext } from "./hooks/useAuthContext";
 
-const SignInPage = lazy(() => import("./pages/client/signInPage"));
-const SignUpPage = lazy(() => import("./pages/client/signUpPage"));
+const SignInPage = lazy(() => import("./pages/client/SignInPage"));
+const SignUpPage = lazy(() => import("./pages/client/SignUpPage"));
 const HomePage = lazy(() => import("./pages/client/home"));
 const UserPage = lazy(() => import("./pages/client/user"));
 
@@ -49,17 +49,16 @@ function App() {
               element={user ? <PassengerPage /> : <Navigate to="/signIn" />}
             />
             <Route
-
               path="/subscription"
               element={user ? <Subscription /> : <Navigate to="/signIn" />}
-
+            />
+            <Route
               path="/driverReg"
               element={user ? <DriverRegPage /> : <Navigate to="/signIn" />}
             />
             <Route
               path="/driverAccept"
               element={user ? <DriverAcceptPage /> : <Navigate to="/signIn" />}
-
             />
           </Routes>
         </div>
