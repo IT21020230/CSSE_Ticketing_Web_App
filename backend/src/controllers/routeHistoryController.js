@@ -27,8 +27,10 @@ const createRouteHistory = async (req, res) => {
 
 const updateRouteStatus = async (req, res) => {
   try {
-    const route = await RouteHistory.findByIdAndUpdate(
-      req.params.id,
+    const route = await RouteHistory.findOneAndUpdate(
+      {
+        passengerID: req.params.passengerID,
+      },
       {
         status: req.body.status,
       },
@@ -64,5 +66,9 @@ const getRouteByUser = async (req, res) => {
       .json({ error: "Could not retrieve route history entries" });
   }
 };
-module.exports = { createRouteHistory, getRouteHistory, getRouteByUser };
-//
+module.exports = {
+  createRouteHistory,
+  getRouteHistory,
+  getRouteByUser,
+  updateRouteStatus,
+};
