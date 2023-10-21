@@ -70,6 +70,15 @@ function SubscriptionPlan() {
     margin: "10px",
   };
 
+  function sendData(e, plan, price) {
+    e.preventDefault();
+    console.log(plan, price);
+    const data = { plan, price };
+    const dataString = JSON.stringify(data);
+    window.location.href = `/balanceUpdate?data=${encodeURIComponent(
+      dataString
+    )}`;
+  }
   return (
     <div>
       <Grid container spacing={0}>
@@ -129,6 +138,7 @@ function SubscriptionPlan() {
                         color: "white",
                         padding: "0.5em 2em 0.5em 2em",
                       }}
+                      onClick={(e) => sendData(e, "Basic Package", 1000)}
                     >
                       Subscribe
                     </button>
@@ -144,7 +154,7 @@ function SubscriptionPlan() {
               >
                 <Grid container spacing={0}>
                   <Grid item xs={12} style={{ textAlign: "center" }}>
-                    <p style={{ fontSize: "2em", fontWeight: 600 }}>Basic</p>
+                    <p style={{ fontSize: "2em", fontWeight: 600 }}>Premium</p>
                     <hr />
                   </Grid>
                   <Grid item xs={12}>
@@ -184,6 +194,7 @@ function SubscriptionPlan() {
                         color: "white",
                         padding: "0.5em 2em 0.5em 2em",
                       }}
+                      onClick={(e) => sendData(e, "Premium Package", 3000)}
                     >
                       Subscribe
                     </button>
@@ -199,7 +210,9 @@ function SubscriptionPlan() {
               >
                 <Grid container spacing={0}>
                   <Grid item xs={12} style={{ textAlign: "center" }}>
-                    <p style={{ fontSize: "2em", fontWeight: 600 }}>Basic</p>
+                    <p style={{ fontSize: "2em", fontWeight: 600 }}>
+                      Enterprise
+                    </p>
                     <hr />
                   </Grid>
                   <Grid item xs={12}>
@@ -237,6 +250,7 @@ function SubscriptionPlan() {
                         color: "white",
                         padding: "0.5em 2em 0.5em 2em",
                       }}
+                      onClick={(e) => sendData(e, "Enterprise Package", 6000)}
                     >
                       Subscribe
                     </button>

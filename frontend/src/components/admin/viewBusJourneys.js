@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
-import Card from '@material/ui';
-import CardContent from '@material/ui';
-import TextField from '@material/ui';
-import MenuItem from '@material/ui';
-import Button from '@material/ui';
+import React, { useState } from "react";
 
+function ViewBusJouneys() {
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
 
-
-function ViewBusJouneys(){
-
-    const [selectedDate, setSelectedDate] = useState('');
-  const [selectedDistrict, setSelectedDistrict] = useState('');
-
-  const districts = ['Colombo', 'Gampaha', 'Kandy'];
+  const districts = ["Colombo", "Gampaha", "Kandy"];
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
@@ -22,18 +14,18 @@ function ViewBusJouneys(){
     setSelectedDistrict(event.target.value);
   };
 
-  const handleSearch = () => {
-    
-  };
+  const handleSearch = () => {};
 
-
-    return(
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      
-    </div>
-    )
-
-
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    ></div>
+  );
 }
 
 export default ViewBusJouneys();
