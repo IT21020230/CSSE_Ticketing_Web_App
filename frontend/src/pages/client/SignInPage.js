@@ -1,16 +1,16 @@
 import React from "react";
-import SignUp from "../../components/client/signUp/signUp";
+import SignIn from "../../components/client/SignIn/SignIn";
 import NavBar from "../../layout/NavBar";
 
-const SignUnPage = () => {
+const SignInPage = () => {
   return (
     <main className="app">
       <NavBar />
       <div className="content">
-        <SignUp />
+        <SignIn />
       </div>
     </main>
   );
 };
 
-export default SignUnPage;
+export default SignInPage;

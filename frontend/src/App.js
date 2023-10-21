@@ -3,8 +3,8 @@ import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
 import { useAuthContext } from "./hooks/useAuthContext";
 
-const SignInPage = lazy(() => import("./pages/client/signIn"));
-const SignUpPage = lazy(() => import("./pages/client/signUp"));
+const SignInPage = lazy(() => import("./pages/client/SignInPage"));
+const SignUpPage = lazy(() => import("./pages/client/SignUpPage"));
 const HomePage = lazy(() => import("./pages/client/home"));
 const UserPage = lazy(() => import("./pages/client/user"));
 
