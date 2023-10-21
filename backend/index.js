@@ -23,12 +23,20 @@ const userRoutes = require("./src/routes/userRoutes");
 const routeHistoryRoutes = require("./src/routes/routeHistoryRoutes");
 const routeListRoutes = require("./src/routes/routeListRoutes");
 const driverRoutes = require("./src/routes/driverRoutes");
+const busRouteRoutes = require("./src/routes/busRouteRoutes")
+const payment = require("./src/routes/paymentRoutes")
+const busJourneys = require("./src/routes/busJourneyRoutes")
+
 
 //Use routes
 app.use("/api/users", userRoutes);
 app.use("/api/routeHistory", routeHistoryRoutes);
 app.use("/api/routeList", routeListRoutes);
 app.use("/api/drivers", driverRoutes);
+app.use("/api/routes", busRouteRoutes);
+app.use("/api/payment", payment);
+app.use("/api/busJourney", busJourneys)
+
 
 //Connect to MongoDB
 mongoose
