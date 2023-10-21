@@ -10,6 +10,7 @@ const {
   getUserByRole,
   updateUserById,
   deleteUserById,
+  updateUserRoleById,
 } = require("../controllers/userController");
 
 // Login user
@@ -35,5 +36,8 @@ router.put("/:id", updateUserById);
 
 //Delete user by id
 router.delete("/:id", deleteUserById);
+
+//Update user role by id
+router.put("/:id/role", updateUserRoleById);
 
 module.exports = router;
