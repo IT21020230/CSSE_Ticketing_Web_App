@@ -1,11 +1,11 @@
 import React from "react";
-import SignIn from "../../components/client/SignIn/SignIn";
-import Header from "../../components/Layout/Header";
+import SignIn from "../../components/client/signIn/signIn";
+import HeaderOut from "../../components/Layout/HeaderOut";
 
 const SignInPage = () => {
   return (
     <main className="app">
-      <Header />
+      <HeaderOut />
       <div className="content">
         <SignIn />
       </div>
