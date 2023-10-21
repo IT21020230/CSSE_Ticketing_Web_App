@@ -1,12 +1,12 @@
 import React from "react";
-
+import Header from "../../components/Layout/Header";
 import NavBar from "../../layout/NavBar";
 import ViewBusJourneys from "../../components/admin/viewBusJourneys";
 
-const PassengerPage = () => {
+const ViewBusJourneysPage = () => {
   return (
     <main className="app">
-      <NavBar />
+      <Header />
       <div className="content">
         <ViewBusJourneys />
       </div>
@@ -14,4 +14,4 @@ const PassengerPage = () => {
   );
 };
 
-export default PassengerPage;
+export default ViewBusJourneysPage;

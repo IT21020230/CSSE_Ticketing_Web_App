@@ -12,7 +12,6 @@ const cardStyle = {
   };
 
 
-  
   const inputStyle = {
     width: '100%',
     padding: '8px',
@@ -100,11 +99,6 @@ function TimeTable(){
             console.error('Error fetching data:', error);
           }
       };
-
-
-
-
-
 
 
 
@@ -198,9 +192,9 @@ return(
           {fetchedData.map((item, index) => (
             <tr key={index}>
               <td>{item.routeNumber}</td>
-              <td>{departurePlace}</td>
+              <td>{item.startPlace}</td>
               <td>{item.departureTime}</td> {/* Display the Departure Place */}
-              <td>{arrivalPlace}</td>   {/* Display the Arrival Place */}
+              <td>{item.endPlace}</td>   {/* Display the Arrival Place */}
               
               <td>{item.arrivalTime}</td>
             </tr>

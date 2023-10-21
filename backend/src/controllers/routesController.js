@@ -54,8 +54,11 @@ const findRoutes = async (req, res) => {
         const arrivalTime = route.stopTimes[endIndex];
         return {
           routeNumber: route.routeNumber,
+          startPlace,
+          endPlace,
           departureTime,
           arrivalTime,
+          
         };
       }
       return null;

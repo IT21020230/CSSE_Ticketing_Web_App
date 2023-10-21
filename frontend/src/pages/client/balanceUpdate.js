@@ -1,12 +1,13 @@
 import React from "react";
 import Home from "../../components/client/home/home";
 import BalanceUpdate from "../../components/client/balanceUpdate/balanceUpdate"
+import Header from "../../components/Layout/Header";
 import NavBar from "../../layout/NavBar";
 
-const HomePage = () => {
+const BalanceUpdatePagee = () => {
   return (
     <main className="app">
-      <NavBar />
+      <Header />
       <div className="content">
         <BalanceUpdate/>
       </div>
@@ -14,4 +15,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default BalanceUpdatePagee;

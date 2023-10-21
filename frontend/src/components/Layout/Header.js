@@ -139,6 +139,16 @@ export default function App() {
                 <ListItemText primary="Passenger List" />
               </ListItem>
             </Link>
+
+            <Link to="/viewBusJourneys" style={{ textDecoration: "none" }}>
+              <ListItem className={classes.listItem} button>
+                <ListItemIcon className={classes.listItem}>
+                  <AssignmentInd />
+                </ListItemIcon>
+                <ListItemText primary="See Journeys" />
+              </ListItem>
+            </Link>
+
           </>
         )}
 
@@ -151,13 +161,24 @@ export default function App() {
           </ListItem>
         </Link>
 
-
+        <Link to="/timeTable" style={{ textDecoration: "none" }}>
         <ListItem className={classes.listItem} button>
           <ListItemIcon className={classes.listItem}>
             <ContactMail />
           </ListItemIcon>
-          <ListItemText primary="Name 4" />
+          <ListItemText primary="Timetable" />
         </ListItem>
+        </Link>
+
+        <Link to="/balanceUpdate" style={{ textDecoration: "none" }}>
+        <ListItem className={classes.listItem} button>
+          <ListItemIcon className={classes.listItem}>
+            <ContactMail />
+          </ListItemIcon>
+          <ListItemText primary="Recharge Account Balance" />
+        </ListItem>
+        </Link>
+
       </List>
     </Box>
   );
