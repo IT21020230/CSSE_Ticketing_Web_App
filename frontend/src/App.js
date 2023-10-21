@@ -55,18 +55,18 @@ function App() {
               element={user ? <PassengerPage /> : <Navigate to="/signIn" />}
             />
             <Route
-
               path="/subscription"
               element={user ? <Subscription /> : <Navigate to="/signIn" />}
+
 />          
 <Route
+
               path="/driverReg"
               element={user ? <DriverRegPage /> : <Navigate to="/signIn" />}
             />
             <Route
               path="/driverAccept"
               element={user ? <DriverAcceptPage /> : <Navigate to="/signIn" />}
-
 
             />
               <Route

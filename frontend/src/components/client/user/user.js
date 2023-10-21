@@ -15,6 +15,7 @@ import { MenuItem, Select } from "@mui/material";
 import Axios from "axios";
 
 import { useAuthContext } from "../../../hooks/useAuthContext";
+import { redirect } from "react-router";
 
 function Copyright(props) {
   return (
@@ -48,6 +49,7 @@ function User() {
       `http://localhost:9000/api/users/${user.userId}`
     );
     setUsers(response.data);
+    console.log("RRRRRRRRRRRRRRRRRRRRRRRRRRRR", response.data);
   };
 
   useEffect(() => {
@@ -84,10 +86,15 @@ function User() {
         phone: data.get("phone"),
       }
     );
-
-    console.log(response);
   };
+  console.log(users);
+  console.log(
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  );
 
+  const redirect = () => {
+    window.location.href = "/subscription";
+  };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -104,6 +111,42 @@ function User() {
           <Typography component="h1" variant="h5">
             User Details
           </Typography>
+          {users ? (
+            <>
+              {" "}
+              {users.role == "Foreign Passenger" ? (
+                <>
+                  {users.isSubscribed ? (
+                    <div
+                      style={{
+                        backgroundColor: "green",
+                        padding: "10px 20px",
+                        color: "white",
+                        borderRadius: "50px",
+                      }}
+                    >
+                      {users.subscriptionPlan}
+                    </div>
+                  ) : (
+                    <button
+                      style={{
+                        backgroundColor: "red",
+                        padding: "10px 15px",
+                        color: "white",
+                        borderRadius: "50px",
+                        border: "none",
+                        marginTop: "10px",
+                      }}
+                      onClick={redirect}
+                    >
+                      subscribe now!
+                    </button>
+                  )}
+                </>
+              ) : null}
+            </>
+          ) : null}
+
           <Box
             component="form"
             noValidate
