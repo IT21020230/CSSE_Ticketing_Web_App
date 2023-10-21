@@ -1,11 +1,11 @@
 import React from "react";
 import SignIn from "../../components/client/SignIn/SignIn";
-import NavBar from "../../layout/NavBar";
+import Header from "../../components/Layout/Header";
 
 const SignInPage = () => {
   return (
     <main className="app">
-      <NavBar />
+      <Header />
       <div className="content">
         <SignIn />
       </div>

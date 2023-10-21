@@ -1,11 +1,11 @@
 import React from "react";
 import SignUp from "../../components/client/SignUp/SignUp";
-import NavBar from "../../layout/NavBar";
+import Header from "../../components/Layout/Header";
 
 const SignUpPage = () => {
   return (
     <main className="app">
-      <NavBar />
+      <Header />
       <div className="content">
         <SignUp />
       </div>
