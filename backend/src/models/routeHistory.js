@@ -21,10 +21,12 @@ const routeHistorySchema = new Schema({
   endLocation: {
     type: String,
     required: true,
+    default: "N/A",
   },
   ticketPrice: {
     type: String,
     required: false,
+    default: "N/A",
   },
 });
 
