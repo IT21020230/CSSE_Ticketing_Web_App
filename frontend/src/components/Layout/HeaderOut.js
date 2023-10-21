@@ -80,11 +80,6 @@ export default function App() {
           marginTop: "0em",
         }}
       >
-        {/* <Avatar
-          className={classes.avatar}
-          src="https://i.ibb.co/rx5DFbs/avatar.png"
-          alt="Juaneme8"
-        /> */}
         <Grid container spacing={0}>
           <Grid item xs={6}>
             <img
@@ -103,59 +98,23 @@ export default function App() {
       </div>
 
       <List>
-        <ListItem className={classes.listItem} button>
-          <ListItemIcon className={classes.listItem}>
-            <Home />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-
-        <Link to="/user" style={{ textDecoration: "none" }}>
+        <Link to="/signUp" style={{ textDecoration: "none" }}>
           <ListItem className={classes.listItem} button>
             <ListItemIcon className={classes.listItem}>
               <ContactMail />
             </ListItemIcon>
-            <ListItemText primary="My Profile" />
+            <ListItemText primary="Register" />
           </ListItem>
         </Link>
 
-        {user.role === "Admin" && (
-          <>
-            <Link to="/driverAccept" style={{ textDecoration: "none" }}>
-              <ListItem className={classes.listItem} button>
-                <ListItemIcon className={classes.listItem}>
-                  <ContactMail />
-                </ListItemIcon>
-                <ListItemText primary="Accept Drivers" />
-              </ListItem>
-            </Link>
-
-            <Link to="/passengers" style={{ textDecoration: "none" }}>
-              <ListItem className={classes.listItem} button>
-                <ListItemIcon className={classes.listItem}>
-                  <AssignmentInd />
-                </ListItemIcon>
-                <ListItemText primary="Passenger List" />
-              </ListItem>
-            </Link>
-          </>
-        )}
-
-        <Link to="/driverReg" style={{ textDecoration: "none" }}>
+        <Link to="/signIn" style={{ textDecoration: "none" }}>
           <ListItem className={classes.listItem} button>
             <ListItemIcon className={classes.listItem}>
               <AssignmentInd />
             </ListItemIcon>
-            <ListItemText primary="Become a Driver" />
+            <ListItemText primary="Login" />
           </ListItem>
         </Link>
-
-        <ListItem className={classes.listItem} button>
-          <ListItemIcon className={classes.listItem}>
-            <ContactMail />
-          </ListItemIcon>
-          <ListItemText primary="Name 4" />
-        </ListItem>
       </List>
     </Box>
   );

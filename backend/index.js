@@ -22,10 +22,14 @@ app.use(cors());
 const userRoutes = require("./src/routes/userRoutes");
 const routeHistoryRoutes = require("./src/routes/routeHistoryRoutes");
 const routeListRoutes = require("./src/routes/routeListRoutes");
+const driverRoutes = require("./src/routes/driverRoutes");
+
 //Use routes
 app.use("/api/users", userRoutes);
 app.use("/api/routeHistory", routeHistoryRoutes);
 app.use("/api/routeList", routeListRoutes);
+app.use("/api/drivers", driverRoutes);
+
 //Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI, {

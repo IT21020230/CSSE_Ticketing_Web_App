@@ -39,7 +39,7 @@ const defaultTheme = createTheme();
 function User() {
   const { user } = useAuthContext();
   const [users, setUsers] = useState();
-  const [role, setRole] = useState("");
+  //const [role, setRole] = useState("");
 
   //fetch user
   const fetchUsers = async () => {
@@ -54,9 +54,9 @@ function User() {
     fetchUsers();
   }, []);
 
-  const handleChangeRole = (event) => {
-    setRole(event.target.value);
-  };
+  // const handleChangeRole = (event) => {
+  //   setRole(event.target.value);
+  // };
 
   const handleUpdateSubmit = async (event) => {
     event.preventDefault();
@@ -68,7 +68,6 @@ function User() {
       email: data.get("email"),
       password: data.get("password"),
       confirmPassword: data.get("confirmPassword"),
-      role: role,
       nic: data.get("nic"),
       phone: data.get("phone"),
     });
@@ -81,7 +80,6 @@ function User() {
         email: data.get("email"),
         password: data.get("password"),
         confirmPassword: data.get("confirmPassword"),
-        role: role,
         nic: data.get("nic"),
         phone: data.get("phone"),
       }
@@ -171,7 +169,7 @@ function User() {
                       autoComplete="new-password"
                     />
                   </Grid>
-                  <Grid item xs={12}>
+                  {/* <Grid item xs={12}>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
@@ -191,7 +189,7 @@ function User() {
                         Foreign Passenger
                       </MenuItem>
                     </Select>
-                  </Grid>
+                  </Grid> */}
 
                   <Grid item xs={12}>
                     <TextField

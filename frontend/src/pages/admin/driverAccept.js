@@ -1,17 +1,17 @@
 import React from "react";
-import Passenger from "../../components/admin/passengers/passengers";
+import DriverAccept from "../../components/admin/driverAccept/driverAccept";
 import NavBar from "../../layout/NavBar";
 import Header from "../../components/Layout/Header";
 
-const PassengerPage = () => {
+const DriverAcceptPage = () => {
   return (
     <main className="app">
       <Header />
       <div className="content">
-        <Passenger />
+        <DriverAccept />
       </div>
     </main>
   );
 };
 
-export default PassengerPage;
+export default DriverAcceptPage;
