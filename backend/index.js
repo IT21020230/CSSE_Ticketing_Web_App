@@ -20,9 +20,11 @@ app.use(cors());
 
 //Import Routes
 const userRoutes = require("./src/routes/userRoutes");
+const driverRoutes = require("./src/routes/driverRoutes");
 
 //Use routes
 app.use("/api/users", userRoutes);
+app.use("/api/drivers", driverRoutes);
 
 //Connect to MongoDB
 mongoose

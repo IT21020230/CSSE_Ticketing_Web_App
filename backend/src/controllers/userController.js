@@ -122,13 +122,13 @@ const signupUser = async (req, res) => {
     // Generate a QR code containing user details
     const userQRCode = JSON.stringify({
       userId: user._id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      nic: user.nic,
-      phone: user.phone,
-      registeredDate: user.registeredDate,
-      accountBalance: user.accountBalance,
+      // name: user.name,
+      // email: user.email,
+      // role: user.role,
+      // nic: user.nic,
+      // phone: user.phone,
+      // registeredDate: user.registeredDate,
+      // accountBalance: user.accountBalance,
     });
 
     // Generate the QR code as a data URL
