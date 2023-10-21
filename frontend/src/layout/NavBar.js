@@ -10,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 import { NavLink } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 export default function NavBar() {
   const { user } = useAuthContext();
@@ -21,7 +22,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ height: "10px" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -32,9 +33,15 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Transport
-          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={8}></Grid>
+            <Grid item xs={4}>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Transport
+              </Typography>
+            </Grid>
+          </Grid>
+
           <NavLink
             href="/home"
             style={{ color: "inherit", fontWeight: "bold" }}
