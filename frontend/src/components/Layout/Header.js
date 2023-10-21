@@ -109,14 +109,30 @@ export default function App() {
         <Divider />
       </div>
       <List>
-        {listItems.map((listItem, index) => (
-          <ListItem className={classes.listItem} button key={index}>
-            <ListItemIcon className={classes.listItem}>
-              {listItem.listIcon}
-            </ListItemIcon>
-            <ListItemText primary={listItem.listText} />
-          </ListItem>
-        ))}
+        <ListItem className={classes.listItem} button>
+          <ListItemIcon className={classes.listItem}>
+            <Home />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem className={classes.listItem} button>
+          <ListItemIcon className={classes.listItem}>
+            <AssignmentInd />
+          </ListItemIcon>
+          <ListItemText primary="NAme 2" />
+        </ListItem>
+        <ListItem className={classes.listItem} button>
+          <ListItemIcon className={classes.listItem}>
+            <Apps />
+          </ListItemIcon>
+          <ListItemText primary="Name 3" />
+        </ListItem>
+        <ListItem className={classes.listItem} button>
+          <ListItemIcon className={classes.listItem}>
+            <ContactMail />
+          </ListItemIcon>
+          <ListItemText primary="Name 4" />
+        </ListItem>
       </List>
     </Box>
   );
