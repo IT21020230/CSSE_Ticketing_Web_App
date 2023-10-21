@@ -11,6 +11,7 @@ const UserPage = lazy(() => import("./pages/client/user"));
 const PassengerPage = lazy(() => import("./pages/admin/passenger"));
 
 const BalanceUpdatePage = lazy(() => import("./pages/client/balanceUpdate"))
+const TimeTablePage = lazy(() => import("./pages/client/timeTable"))
 
 
 
@@ -51,6 +52,11 @@ function App() {
             <Route
               path="/balanceUpdate"
               element={user ? <BalanceUpdatePage /> : <Navigate to="/signIn" />}
+            />
+
+            <Route
+              path="/timeTable"
+              element={user ? <TimeTablePage /> : <Navigate to="/signIn" />}
             />
 
 

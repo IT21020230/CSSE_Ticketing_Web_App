@@ -30,11 +30,11 @@ const addRoutes = async (req, res) => {
 
 
 const findRoutes = async (req, res) => {
-    const { startPlace, endPlace } = req.body;
+    
   
     try {
-    const { startPlace, endPlace } = req.body;
-
+    const { startPlace, endPlace } = req.params;
+    console.log(startPlace)
     
     if (!startPlace || !endPlace) {
       return res.status(400).json({ error: 'Start place and end place are required' });

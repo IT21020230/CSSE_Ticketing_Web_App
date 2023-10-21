@@ -14,7 +14,7 @@ const {
 router.post("/", addRoutes);
 
 //find routes
-router.get("/findRoutes", findRoutes)
+router.get("/findRoutes/:startPlace/:endPlace", findRoutes)
 
 
 module.exports = router;
