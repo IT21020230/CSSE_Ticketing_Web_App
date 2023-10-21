@@ -126,7 +126,7 @@ export default function App() {
       <CssBaseline />
 
       <Box component="nav">
-        <AppBar position="static" style={{ position: "absolute", zIndex: 1 }}>
+        <AppBar position="static">
           <Toolbar>
             <IconButton onClick={toggleSlider}>
               <Menu />

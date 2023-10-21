@@ -7,7 +7,7 @@ const SignInPage = lazy(() => import("./pages/client/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/client/SignUpPage"));
 const HomePage = lazy(() => import("./pages/client/home"));
 const UserPage = lazy(() => import("./pages/client/user"));
-
+const Subscription = lazy(() => import("./pages/client/SubscriptionPlanPage"));
 const PassengerPage = lazy(() => import("./pages/admin/passenger"));
 
 function App() {
@@ -42,6 +42,10 @@ function App() {
             <Route
               path="/passengers"
               element={user ? <PassengerPage /> : <Navigate to="/signIn" />}
+            />
+            <Route
+              path="/subscription"
+              element={user ? <Subscription /> : <Navigate to="/signIn" />}
             />
           </Routes>
         </div>
