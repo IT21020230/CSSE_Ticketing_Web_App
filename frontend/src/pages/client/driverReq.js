@@ -1,17 +1,16 @@
 import React from "react";
-import DriverReg from "../../components/client/driverReg/driverReg";
-import NavBar from "../../layout/NavBar";
+import DriverReq from "../../components/client/driverReq/driverReq";
 import Header from "../../components/Layout/Header";
 
-const DriverRegPage = () => {
+const HomePage = () => {
   return (
     <main className="app">
       <Header />
       <div className="content">
-        <DriverReg />
+        <DriverReq />
       </div>
     </main>
   );
 };
 
-export default DriverRegPage;
+export default HomePage;

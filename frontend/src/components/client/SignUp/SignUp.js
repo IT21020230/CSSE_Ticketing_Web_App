@@ -191,6 +191,13 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
+            <div>
+              {error && (
+                <div className="error" style={{ color: "red" }}>
+                  <b>{error}</b>
+                </div>
+              )}
+            </div>
             <Button
               type="submit"
               fullWidth

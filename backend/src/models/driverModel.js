@@ -19,18 +19,14 @@ const driverSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  imageOne: {
-    type: String,
-    required: false,
-  },
-  imageTwo: {
+  image: {
     type: String,
     required: false,
   },
   status: {
     type: String,
     required: true,
-    default: "pending",
+    default: "Pending",
   },
 });
 

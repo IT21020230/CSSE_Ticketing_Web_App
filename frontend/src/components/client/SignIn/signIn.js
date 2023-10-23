@@ -69,7 +69,13 @@ export default function SignIn() {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-        />
+        >
+          <img
+            style={{ width: "100%", height: "100%" }}
+            src="https://image.shutterstock.com/image-photo/bus-traveling-on-asphalt-road-260nw-1345741577.jpg"
+            alt="transport image"
+          />
+        </Grid>
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{

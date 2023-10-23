@@ -141,21 +141,16 @@ export default function App() {
           </>
         )}
 
-        <Link to="/driverReg" style={{ textDecoration: "none" }}>
-          <ListItem className={classes.listItem} button>
-            <ListItemIcon className={classes.listItem}>
-              <AssignmentInd />
-            </ListItemIcon>
-            <ListItemText primary="Become a Driver" />
-          </ListItem>
-        </Link>
-
-        <ListItem className={classes.listItem} button>
-          <ListItemIcon className={classes.listItem}>
-            <ContactMail />
-          </ListItemIcon>
-          <ListItemText primary="Name 4" />
-        </ListItem>
+        {user.role != "Foreign Passenger" && (
+          <Link to="/driverReq" style={{ textDecoration: "none" }}>
+            <ListItem className={classes.listItem} button>
+              <ListItemIcon className={classes.listItem}>
+                <AssignmentInd />
+              </ListItemIcon>
+              <ListItemText primary="Become a Driver" />
+            </ListItem>
+          </Link>
+        )}
       </List>
     </Box>
   );

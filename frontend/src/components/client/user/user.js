@@ -11,7 +11,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Modal, Select } from "@mui/material";
 import Axios from "axios";
 
 import { useAuthContext } from "../../../hooks/useAuthContext";
@@ -31,6 +31,21 @@ function Copyright(props) {
     </Typography>
   );
 }
+
+// modal
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -54,9 +69,14 @@ function User() {
     fetchUsers();
   }, []);
 
-  // const handleChangeRole = (event) => {
-  //   setRole(event.target.value);
-  // };
+  // Update Success modal
+  const [openUpdateSuccessModal, setOpenUpdateSuccessModal] = useState(false);
+  const handleUpdateSuccessModalOpen = () => {
+    setOpenUpdateSuccessModal(true);
+  };
+  const handleUpdateSuccessModalClose = () => {
+    setOpenUpdateSuccessModal(false);
+  };
 
   const handleUpdateSubmit = async (event) => {
     event.preventDefault();
@@ -86,6 +106,10 @@ function User() {
     );
 
     console.log(response);
+
+    if (true) {
+      handleUpdateSuccessModalOpen();
+    }
   };
 
   return (
@@ -169,28 +193,6 @@ function User() {
                       autoComplete="new-password"
                     />
                   </Grid>
-                  {/* <Grid item xs={12}>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      defaultValue={users.role}
-                      //value={users.role}
-                      label="Role"
-                      fullWidth
-                      onChange={handleChangeRole}
-                    >
-                      <MenuItem value={""} disabled>
-                        Select a role
-                      </MenuItem>
-                      <MenuItem value={"Local Passenger"}>
-                        Local Passenger
-                      </MenuItem>
-                      <MenuItem value={"Foreign Passenger"}>
-                        Foreign Passenger
-                      </MenuItem>
-                    </Select>
-                  </Grid> */}
-
                   <Grid item xs={12}>
                     <TextField
                       defaultValue={users.nic}
@@ -235,6 +237,30 @@ function User() {
             <Grid container justifyContent="flex-end"></Grid>
           </Box>
         </Box>
+        {/* Update success modal */}
+        <Modal
+          open={openUpdateSuccessModal}
+          onClose={handleUpdateSuccessModalClose}
+        >
+          <Box sx={{ ...style, width: 400 }}>
+            <h2
+              className="text-3xl font-semibold text-black"
+              id="parent-modal-title"
+            >
+              User Updated Successfully
+            </h2>
+            <br />
+
+            <div className="flex justify-between">
+              <Button
+                className="mt-3 hover:bg-blue-800 bg-blue-700 w-max h-12 text-white py-1 px-8 rounded-md"
+                onClick={handleUpdateSuccessModalClose}
+              >
+                Okay
+              </Button>
+            </div>
+          </Box>
+        </Modal>
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>

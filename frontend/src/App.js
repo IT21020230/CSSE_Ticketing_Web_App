@@ -7,7 +7,7 @@ const SignInPage = lazy(() => import("./pages/client/signInPage"));
 const SignUpPage = lazy(() => import("./pages/client/signUpPage"));
 const HomePage = lazy(() => import("./pages/client/home"));
 const UserPage = lazy(() => import("./pages/client/user"));
-const DriverRegPage = lazy(() => import("./pages/client/driverReg"));
+const DriverReqPage = lazy(() => import("./pages/client/driverReq"));
 
 const PassengerPage = lazy(() => import("./pages/admin/passenger"));
 const DriverAcceptPage = lazy(() => import("./pages/admin/driverAccept"));
@@ -46,8 +46,8 @@ function App() {
               element={user ? <PassengerPage /> : <Navigate to="/signIn" />}
             />
             <Route
-              path="/driverReg"
-              element={user ? <DriverRegPage /> : <Navigate to="/signIn" />}
+              path="/driverReq"
+              element={user ? <DriverReqPage /> : <Navigate to="/signIn" />}
             />
             <Route
               path="/driverAccept"

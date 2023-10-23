@@ -6,110 +6,59 @@ const path = require("path");
 // Configure multer storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../uploads");
+    cb(null, "../src/images/");
   },
   filename: function (req, file, cb) {
-    cb(
-      null,
-      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-    );
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
   },
 });
 
 // Create an upload middleware
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 10485760 }, // Limit the file size to 10MB (you can adjust this)
-}).fields([
-  { name: "imageOne", maxCount: 1 }, // "imageOne" is the field name in the form
-  { name: "imageTwo", maxCount: 1 }, // "imageTwo" is the field name in the form
-]);
+const upload = multer({ storage: storage });
 
 // Create Driver
-// const createDriver = async (req, res) => {
-//   try {
-//     // Use the upload middleware to handle image uploads
-//     upload(req, res, async function (err) {
-//       if (err) {
-//         return res.status(400).json({ message: "Error uploading images" });
-//       }
-
-//       const { userId, name, role, registeredDriverDate, status } = req.body;
-//       const imageOne = req.files.imageOne[0].filename; // Get the filename of the uploaded image
-//       const imageTwo = req.files.imageTwo[0].filename;
-
-//       //console.log(imageOne);
-
-//       // Check name or email, name or password is empty
-//       if (!userId || !name) {
-//         return res
-//           .status(400)
-//           .json({ message: "userId, name fields must be filled" });
-//       }
-
-//       // Check if email already exists
-//       const existingUser = await Driver.findOne({ userId: userId });
-//       if (existingUser) {
-//         return res.status(409).json({ message: "Driver already exists" });
-//       }
-
-//       // Create new driver
-//       const driver = new Driver({
-//         userId,
-//         name,
-//         role,
-//         registeredDriverDate,
-//         imageOne,
-//         imageTwo,
-//         status,
-//       });
-//       await driver.save();
-
-//       // Send a success response
-//       res.status(201).json({ message: "Driver created successfully" });
-//     });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
-
 const createDriver = async (req, res) => {
   try {
-    upload(req, res, async function (err) {
-      if (err) {
-        return res.status(400).json({ message: "Error uploading images" });
-      }
+    const { userId, name, role, registeredDriverDate, status } = req.body;
 
-      const { userId, name, role, registeredDriverDate, status } = req.body;
-      //const imageOne = req.files.imageOne[0].filename;
-      //const imageTwo = req.files.imageTwo[0].filename;
+    // Check if userId or name fields are empty
+    if (!userId || !name) {
+      return res
+        .status(400)
+        .json({ message: "userId and name fields must be filled" });
+    }
 
-      if (!userId || !name) {
-        return res
-          .status(400)
-          .json({ message: "userId and name fields must be filled" });
-      }
+    console.log(userId);
+    console.log(name);
+    console.log(req.file);
 
-      const existingUser = await Driver.findOne({ userId: userId });
-      if (existingUser) {
-        return res.status(409).json({ message: "Driver already exists" });
-      }
+    // // Handle image upload
+    // if (!req.file) {
+    //   return res.status(400).json({ message: "Error uploading image" });
+    // }
 
-      const driver = new Driver({
-        userId,
-        name,
-        role,
-        registeredDriverDate,
-        // imageOne,
-        // imageTwo,
-        status,
-      });
+    // const image = req.file.filename;
 
-      await driver.save();
+    // console.log(image);
 
-      res.status(201).json({ message: "Driver created successfully" });
+    const existingUser = await Driver.findOne({ userId: userId });
+    if (existingUser) {
+      return res.status(409).json({ message: "Driver already exists" });
+    }
+
+    const driver = new Driver({
+      userId,
+      name,
+      role,
+      registeredDriverDate,
+      //image, // Assign the image filename
+      status,
     });
+
+    await driver.save();
+
+    res.status(201).json({ message: "Driver created successfully" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
